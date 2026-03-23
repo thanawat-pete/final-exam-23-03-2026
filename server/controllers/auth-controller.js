@@ -28,12 +28,14 @@ const register = async (req, res, next) => {
       expiresIn: "1d",
     });
 
-    res.cookie("token", token, {
+    const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 24 * 60 * 60 * 1000, // 1 day
-    });
+    };
+
+    res.cookie("token", token, cookieOptions);
 
     res.status(201).json({
       success: true,
@@ -77,12 +79,14 @@ const login = async (req, res, next) => {
       expiresIn: "1d",
     });
 
-    res.cookie("token", token, {
+    const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 24 * 60 * 60 * 1000, // 1 day
-    });
+    };
+
+    res.cookie("token", token, cookieOptions);
 
     res.status(200).json({
       success: true,
@@ -107,7 +111,11 @@ const getMe = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    });
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
     next(error);
