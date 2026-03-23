@@ -153,9 +153,21 @@ const DashboardPage = () => {
                   {task.title}
                 </h3>
               </Link>
-              <p className="text-xs text-base-content/50 truncate max-w-md">
-                {task.description || t("no_description")}
-              </p>
+              <div className="flex items-center gap-2 mt-1">
+                <p className="text-xs text-base-content/50 truncate max-w-xs">
+                  {task.description || t("no_description")}
+                </p>
+                {task.userId && (
+                  <div className="flex items-center gap-1.5 bg-primary/5 px-2 py-0.5 rounded-lg border border-primary/10">
+                    <div className="w-4 h-4 rounded-full bg-primary text-[8px] flex items-center justify-center text-white font-black uppercase">
+                      {task.userId.fullname.charAt(0)}
+                    </div>
+                    <span className="text-[10px] text-primary/70 font-bold truncate max-w-[80px]">
+                      {task.userId.fullname.split(" ")[0]}
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="hidden md:flex flex-col items-end gap-1 px-4 border-l border-base-200 ml-auto">
@@ -248,6 +260,18 @@ const DashboardPage = () => {
                   {task.title}
                 </h3>
               </Link>
+              <div className="flex items-center gap-2 mt-2">
+                {task.userId && (
+                  <div className="flex items-center gap-2 bg-base-200/50 pr-3 pl-1 py-1 rounded-full border border-base-300/50">
+                    <div className="w-6 h-6 rounded-full bg-secondary text-[10px] flex items-center justify-center text-white font-black uppercase shadow-sm">
+                      {task.userId.fullname.charAt(0)}
+                    </div>
+                    <span className="text-[11px] font-bold text-base-content/60 tracking-tight">
+                      {task.userId.fullname}
+                    </span>
+                  </div>
+                )}
+              </div>
               <p
                 className={`mt-3 text-base leading-relaxed line-clamp-2 min-h-[3rem] ${
                   task.status === "completed" ? "text-base-content/20" : "text-base-content/60"

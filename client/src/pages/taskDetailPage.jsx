@@ -24,7 +24,7 @@ const TaskDetailPage = () => {
         if (response.data.success) {
           setTask(response.data.task);
         }
-      } catch (_) {
+      } catch {
         toast.error("Task not found");
         navigate("/");
       } finally {
@@ -137,7 +137,7 @@ const TaskDetailPage = () => {
           </div>
 
           {/* Metadata Footer */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 pt-10 border-t border-base-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-10 border-t border-base-200">
             <div className="flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                 <Calendar size={22} />
@@ -145,6 +145,19 @@ const TaskDetailPage = () => {
               <div className="space-y-0.5">
                 <p className="text-[10px] uppercase font-black tracking-widest opacity-30">{t("created")}</p>
                 <p className="font-bold text-base-content/60">{new Date(task.createdAt).toLocaleString()}</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 group">
+              <div className="w-12 h-12 rounded-2xl bg-secondary/5 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+                <Info size={22} />
+              </div>
+              <div className="space-y-0.5">
+                <p className="text-[10px] uppercase font-black tracking-widest opacity-30">Assignor / Creator</p>
+                <p className="font-bold text-base-content/60">
+                  {task.userId?.fullname || "Unknown System User"}
+                </p>
+                {task.userId?.email && <p className="text-[10px] opacity-20">{task.userId.email}</p>}
               </div>
             </div>
 

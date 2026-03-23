@@ -1,6 +1,6 @@
-# SE NPRU TaskFlow (คู่มือการทำโปรเจกต์)
+# SE NPRU TaskFlow (คู่มือการทำงานร่วมกัน)
 
-โปรเจกต์ **SE NPRU TaskFlow** เป็นเว็บแอปพลิเคชันสำหรับจัดการงาน (Task Management) ที่พัฒนาขึ้นโดยใช้ MERN Stack (MongoDB, Express, React, Node.js) เพื่อช่วยให้ผู้ใช้สามารถติดตามสถานะงานของตัวเองได้อย่างมีประสิทธิภาพ
+โปรเจกต์ **SE NPRU TaskFlow** เป็นเว็บแอปพลิเคชันรูปแบบ **Shared Task Board** สำหรับจัดการงานร่วมกันในทีม พัฒนาขึ้นโดยใช้ MERN Stack (MongoDB, Express, React, Node.js) เพื่อให้ทุกคนในทีมสามารถมองเห็นและติดตามสถานะงานของกันและกันได้แบบ Real-time
 
 ---
 
